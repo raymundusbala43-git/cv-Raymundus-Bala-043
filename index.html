@@ -211,41 +211,40 @@
 	</form>
 </div>
 
+<!-- java -->
+<script>
+const form = document.getElementById('formkontak');
 
-<!-- SCRIPT JAVASCRIPT LANGSUNG -->
-	<script>
-		const form = document.getElementById('formkontak');
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-		form.addEventListener("submit", function (event) {
-			event.preventDefault();
+    // Nomor WhatsApp tujuan (Format internasional tanpa tanda + atau 0 di depan)
+    const nomorWhatsApp = "6282123874849";
 
-			// Nomor WhatsApp tujuan
-			const nomorWhatsApp = "6282123874849";
+    // Mengambil nilai dari input form
+    const nama = document.getElementById("nama").value;
+    const email = document.getElementById("email").value;
+    const telepon = document.getElementById("telepon").value;
+    const minat = document.getElementById("minat").value;
+    const pesan = document.getElementById("pesan").value;
 
-			// Mengambil data dari form
-			const nama = document.getElementById("nama").value;
-			const email = document.getElementById("email").value;
-			const telepon = document.getElementById("telepon").value;
-			const minat = document.getElementById("minat").value;
-			const pesan = document.getElementById("pesan").value;
-
-			// Menyusun isi pesan
-			const isiPesan = `Halo, saya menghubungi melalui website CV.
+    // Menyusun isi pesan
+    const isiPesan = `Halo, saya menghubungi melalui website CV.
 Nama Lengkap : ${nama}
 Email : ${email}
 No. Telepon : ${telepon}
 Bidang Minat : ${minat}
 Pesan : ${pesan}`;
 
-			// Format URL
-			const pesanEncoded = encodeURIComponent(isiPesan);
+    // Mengubah string pesan ke format URL safe
+    const pesanEncoded = encodeURIComponent(isiPesan);
 
-			// Link WhatsApp
-			const urlWhatsApp = `https://web.whatsapp.com/send?phone=${nomorWhatsApp}&text=${pesanEncoded}`;
+    // Menggunakan URL wa.me (Otomatis mendeteksi Aplikasi WA atau WA Web)
+    const urlWhatsApp = `https://wa.me/${nomorWhatsApp}?text=${pesanEncoded}`;
 
-			// Buka WhatsApp
-			window.location.href = urlWhatsApp;
-		});
+    // Buka di tab baru
+    window.open(urlWhatsApp, "_blank");
+});
 	</script>
 </body>
 </html>
